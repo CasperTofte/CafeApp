@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Tofte Bar</string>
     <string name="welcome_text">Welcome to my sweet Sodastream Bar - with all the fizz you want!</string>
-    <string name="button_menu">Menu</string>
+
+    <string name="btn_drinks">Drinks</string>
+    <string name="btn_map">Map</string>
+    <string name="btn_contact">Contact</string>
+    <string name="btn_about">About</string>
+    <string name="btn_test">Test</string>
 </resources>

@@ -38,18 +38,16 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <Button
-        android:id="@+id/button_menu"
-        android:text="@string/button_menu"
+        android:id="@+id/btn_about"
+        android:text="@string/btn_about"
         android:layout_alignParentLeft="true"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
+        style="@style/btn_main"
         />
     <Button
-        android:id="@+id/button_1"
-        android:text="@string/button_menu"
+        android:id="@+id/button_contact"
+        android:text="@string/btn_contact"
         android:layout_alignParentRight="true"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
+        style="@style/btn_main"
         />
 </LinearLayout>
     <LinearLayout
@@ -58,20 +56,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <Button
-        android:id="@+id/button_2"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:text="@string/button_menu"
-        android:layout_alignParentRight="true" />
+        android:id="@+id/button_drinks"
+        android:text="@string/btn_drinks"
+        android:layout_alignParentRight="true"
+        android:onClick="drinksActivity"
+        style="@style/btn_main"/>
     <Button
-        android:id="@+id/button_3"
-        android:text="@string/button_menu"
+        android:id="@+id/btn_map"
+        android:text="@string/btn_map"
         android:layout_alignParentLeft="true"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
+        style="@style/btn_main"
         />
     </LinearLayout>
         />
+    <!--<Button
+        android:id="@+id/btn_test"
+        android:text="@string/btn_test"
+        android:layout_alignParentRight="true"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        />
+        -->
 </LinearLayout>
 
 </RelativeLayout>
