@@ -7,17 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.caspertofte.toftebar.Drinks">
+    tools:context=".Drinks_activity">
 
     <ListView
-        android:id="@+id/myDrinkList"
+        android:id="@+id/myCustomDrinkList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     </ListView>
 
-    <ListView
-        android:id="@+id/customDrinkList"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
 </RelativeLayout>

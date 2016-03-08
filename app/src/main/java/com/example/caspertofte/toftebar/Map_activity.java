@@ -3,7 +3,7 @@ package com.example.caspertofte.toftebar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Map extends AppCompatActivity {
+public class Map_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

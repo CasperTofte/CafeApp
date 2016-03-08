@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.caspertofte.toftebar.MainActivity">
+    tools:context=".Main_activity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -42,12 +42,14 @@
         android:text="@string/btn_about"
         android:layout_alignParentLeft="true"
         style="@style/btn_main"
+        android:onClick="aboutActivity"
         />
     <Button
         android:id="@+id/button_contact"
         android:text="@string/btn_contact"
         android:layout_alignParentRight="true"
         style="@style/btn_main"
+        android:onClick="contactActivity"
         />
 </LinearLayout>
     <LinearLayout
@@ -66,6 +68,7 @@
         android:text="@string/btn_map"
         android:layout_alignParentLeft="true"
         style="@style/btn_main"
+        android:onClick="mapActivity"
         />
     </LinearLayout>
         />
