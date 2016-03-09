@@ -3,7 +3,8 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <!-- Should be ImageView-->
+    <TextView
         android:id="@+id/drinkImage"
         android:layout_width="50dp"
         android:layout_height="50dp"

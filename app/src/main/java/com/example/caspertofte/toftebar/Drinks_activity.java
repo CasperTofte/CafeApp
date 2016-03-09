@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 public class Drinks_activity extends AppCompatActivity {
 
@@ -27,17 +29,41 @@ public class Drinks_activity extends AppCompatActivity {
                 R.drawable.classics_sugar_free_orange,
         };
 
+        populateDrinksList();
+
+
         // Single item list with text
         // ArrayAdapter<String> DrinksAdaptor= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, DrinksList);
         // ListView ListOfDrinks = (ListView) findViewById(R.id.myDrinkList);
         // ListOfDrinks.setAdapter(DrinksAdaptor);
 
 
-        //Custom list
-        ArrayAdapter<String> DrinksAdaptor = new CustomAdapter_Drinklist(this, drinksList, priceList);
-        ListView listOfDrinks = (ListView) findViewById(R.id.myCustomDrinkList);
-        listOfDrinks.setAdapter(DrinksAdaptor);
+        // Construct the data source
+        //ArrayList<Drinks_method> arrayOfDrinks = new ArrayList<Drinks_method>();
+        // Create the adapter to convert the array to views
+        //CustomAdapter_Drinklist adapter = new CustomAdapter_Drinklist(this, arrayOfDrinks);
+        // Attach the adapter to a ListView
+        //ListView listView = (ListView) findViewById(R.id.myCustomDrinkList);
+        //listView.setAdapter(adapter);
+
+        // Add item to adapter
+        //Drinks_method newDrink = new Drinks_method("Cola", "45.00", "R.drawable.classics_cola");    // Doesn't load image
+        //adapter.add(newDrink);
+
+
+
+        }
+        public void populateDrinksList() {
+        // Construct the data source
+        ArrayList<Drinks_method> arrayOfDrinks = Drinks_method.getDrinks();
+        // Create the adapter to convert the array to views
+        CustomAdapter_Drinklist adapter = new CustomAdapter_Drinklist(this, arrayOfDrinks);
+        // Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.myCustomDrinkList);
+        listView.setAdapter(adapter);
     }
+
+
 
 }
 
