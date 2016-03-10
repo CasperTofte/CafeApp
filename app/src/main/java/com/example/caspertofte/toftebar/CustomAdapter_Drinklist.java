@@ -54,12 +54,12 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         // Lookup view for data population
         TextView drinkName = (TextView) convertView.findViewById(R.id.drinkName);
         TextView drinkPrice = (TextView) convertView.findViewById(R.id.drinkPrice);
-        TextView drinkImage = (TextView) convertView.findViewById(R.id.drinkImage);  //Should be ImageView
+        ImageView drinkImage = (ImageView) convertView.findViewById(R.id.drinkImage);  //Should be ImageView
 
         // Populate the data into the template view using the data object
         drinkName.setText(drinks.getName());
         drinkPrice.setText(drinks.getPrice());
-        drinkImage.setText(drinks.getImage());     // Should be getRessource
+        drinkImage.setImageResource(drinks.getImage());     // Should be get Ressource
 
 
         // print the data

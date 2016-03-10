@@ -8,10 +8,10 @@ public class Drinks_method {
                                 // Should be private
         private String name;
         private String price;
-        private String image;
+        private Integer image;
 
         // Constructor
-        public Drinks_method(String name, String price, String image) {
+        public Drinks_method(String name, String price, Integer image) {
             this.name = name;
             this.price = price;
             this.image = image;
@@ -19,9 +19,14 @@ public class Drinks_method {
 
     public static ArrayList<Drinks_method> getDrinks() {
         ArrayList<Drinks_method> users = new ArrayList<Drinks_method>();
-        users.add(new Drinks_method("Harry", "San Diego", "1"));
-        users.add(new Drinks_method("Marla", "San Francisco", "2"));
-        users.add(new Drinks_method("Sarah", "San Marco", "3"));
+        users.add(new Drinks_method("Cola", "45.00", R.drawable.classics_cola));
+        users.add(new Drinks_method("Orange", "36.25", R.drawable.classics_orange));
+        users.add(new Drinks_method("Lemon Lime", "30.75", R.drawable.classics_lemon_lime));
+        users.add(new Drinks_method("Ginger Ale", "40.99", R.drawable.classics_ginger_ale));
+        users.add(new Drinks_method("Tonic", "15.00", R.drawable.classics_tonic));
+        users.add(new Drinks_method("Lemon Lime Sugarfree", "21.99", R.drawable.classics_sugar_free_lemon_lime));
+        users.add(new Drinks_method("Cola Sugarfree", "17.50", R.drawable.classics_sugar_free_cola));
+        users.add(new Drinks_method("Orange Sugarfree", "19.50", R.drawable.classics_sugar_free_orange));
         return users;
     }
 
@@ -42,11 +47,11 @@ public class Drinks_method {
             this.price = price;
         }
 
-        public String getImage() {
+        public Integer getImage() {
             return image;
         }
 
-        public void setImage(String image) {
+        public void setImage(Integer image) {
             this.image = image;
         }
 }
