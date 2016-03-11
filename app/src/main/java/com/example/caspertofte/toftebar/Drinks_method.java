@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Created by Casper Tofte on 08-03-2016.
  */
 public class Drinks_method {
-                                // Should be private
+
         private String name;
         private String price;
         private Integer image;
@@ -18,7 +18,7 @@ public class Drinks_method {
         }
 
     public static ArrayList<Drinks_method> getDrinks() {
-        ArrayList<Drinks_method> users = new ArrayList<Drinks_method>();
+        ArrayList<Drinks_method> users = new ArrayList<>();
         users.add(new Drinks_method("Cola", "45.00", R.drawable.classics_cola));
         users.add(new Drinks_method("Orange", "36.25", R.drawable.classics_orange));
         users.add(new Drinks_method("Lemon Lime", "30.75", R.drawable.classics_lemon_lime));
