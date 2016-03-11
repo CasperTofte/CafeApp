@@ -56,7 +56,7 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         // Check if the view is not defined. If not defined, we have to inflate (render/create) the view.
         //If it is not null then we have a recycled View and can just change its values, otherwise we need to create a new row View
         ViewHolder viewHolder; // view lookup cache stored in tag
-        
+
         if (convertView == null) {
         viewHolder = new ViewHolder();
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -94,7 +94,5 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         // Display the completed view
         return convertView;
     }
-
-
-
+    
 }
