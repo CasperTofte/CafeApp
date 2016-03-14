@@ -94,5 +94,5 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         // Display the completed view
         return convertView;
     }
-    
+
 }
