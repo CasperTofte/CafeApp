@@ -11,7 +11,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -72,14 +72,14 @@
         />
     </LinearLayout>
         />
-    <!--<Button
-        android:id="@+id/btn_test"
-        android:text="@string/btn_test"
+    <Button
+        android:id="@+id/btn_profile"
+        android:text="@string/btn_profile"
         android:layout_alignParentRight="true"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
+        style="@style/btn_main"
+        android:onClick="profileActivity"
         />
-        -->
+
 </LinearLayout>
 
 </RelativeLayout>

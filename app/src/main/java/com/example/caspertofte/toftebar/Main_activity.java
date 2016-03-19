@@ -38,4 +38,10 @@ public class Main_activity extends AppCompatActivity {
         Intent intent = new Intent(this, Map_activity.class);
         startActivity(intent);
     }
+
+    public void profileActivity(View v)
+    {
+        Intent intent = new Intent(this, Profile_activity.class);
+        startActivity(intent);
+    }
 }

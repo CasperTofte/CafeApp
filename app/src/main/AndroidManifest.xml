@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.caspertofte.toftebar">
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -19,6 +20,7 @@
         <activity android:name=".Contact_activity" />
         <activity android:name=".Map_activity" />
         <activity android:name=".About_activity" />
+        <activity android:name=".Profile_activity"></activity>
     </application>
 
 </manifest>
