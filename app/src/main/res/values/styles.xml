@@ -13,4 +13,9 @@
        <item name="android:layout_height">75dp</item>
     </style>
 
+    <style name="btn_profile">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
 </resources>

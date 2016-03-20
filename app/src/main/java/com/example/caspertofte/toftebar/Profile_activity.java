@@ -25,10 +25,12 @@ import java.io.IOException;
 
 public class Profile_activity extends AppCompatActivity {
 
+    // Instantiate the views
     EditText et_profile_firstName;
     EditText et_profile_lastName;
     EditText et_profile_email;
     ImageView iv_profile_image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,28 +85,26 @@ public class Profile_activity extends AppCompatActivity {
         editor.commit();
 
         // Save image
-        // TODO: Update method call
         profileSaveImageInternal();
 
-        // Show a confirm-message to the user
-        Toast.makeText(this, "Your profile was saved", Toast.LENGTH_SHORT).show();
+        // Show a confirm-message
+        Toast.makeText(this, R.string.profileSaved, Toast.LENGTH_SHORT).show();
 
         finish();
     }
 
     public void profileSaveImageExternal(){
+        // Save image to external storage (SD)
 
-        // TODO: Save image to external storage
-
-        // Load image from view
+         // Load image from view
         iv_profile_image.setDrawingCacheEnabled(true);
         Bitmap bitmap = iv_profile_image.getDrawingCache();
         //String root = Environment.getExternalStorageDirectory().toString();
 
         // Specify file root
-        File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        File newDir = new File(root+"/images");
-        newDir.mkdirs();
+        File rootExternal = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File newExternalDir = new File(rootExternal+"/images");
+        newExternalDir.mkdirs();
 
         // Logging - check where the image is saved
         File file = getFilesDir();
@@ -112,10 +112,10 @@ public class Profile_activity extends AppCompatActivity {
 
         // Image specifications
         String filename = "profileImage";
-        File profileImage = new File (newDir, filename);
+        File profileImage = new File (newExternalDir, filename);
         if (profileImage.exists ()){
-            Toast.makeText(this,"Fil fundet", Toast.LENGTH_LONG).show();
-            //profileImage.delete();
+            Toast.makeText(this, R.string.profileImageExists, Toast.LENGTH_SHORT).show();
+                    //profileImage.delete();
         }
         try {
             FileOutputStream outputStream = new FileOutputStream(profileImage);
@@ -128,9 +128,10 @@ public class Profile_activity extends AppCompatActivity {
     }
 
     public void profileSaveImageInternal(){
+        // Save image to internal storage
 
-        // TODO: Save image to internal storage
-
+        // TODO: Image loading should be improved
+        // TODO: Image should only be saved if one has been taken
         // Load image from view
         iv_profile_image.setDrawingCacheEnabled(true);
         Bitmap bitmap = iv_profile_image.getDrawingCache();
@@ -138,7 +139,7 @@ public class Profile_activity extends AppCompatActivity {
         // Specify file root
         File root = getFilesDir();
         File imageDir = new File(root+"/images");
-        imageDir.mkdirs();
+        imageDir.mkdirs();  // Create folder
 
         // Logging - check where the image is saved
         Log.d("Output_path_", imageDir.getAbsolutePath());
@@ -147,10 +148,11 @@ public class Profile_activity extends AppCompatActivity {
         String filename = "profileImage";
         File profileImage = new File (imageDir, filename);
 
-        if (profileImage.exists ()){
-            Toast.makeText(this,"Fil fundet", Toast.LENGTH_LONG).show();
-            //profileImage.delete();
-        }
+//        if (profileImage.exists ()){
+//            Toast.makeText(this, R.string.profileImageExists, Toast.LENGTH_SHORT).show();
+//            //profileImage.delete();
+//        }
+
         try {
             FileOutputStream outputStream = new FileOutputStream(profileImage);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
@@ -174,7 +176,6 @@ public class Profile_activity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -196,13 +197,23 @@ public class Profile_activity extends AppCompatActivity {
         et_profile_email.setText(email);
 
         // Retrieve image
-        // TODO: Retrieve image
         profileLoadImageInternal();
     }
 
-    public void profileDelete(){
-        // TODO: Delete all saved data including image
-    }
+    public void profileDelete(View view){
+        SharedPreferences mySharedPreferences = getSharedPreferences("profileSettings", Activity.MODE_PRIVATE);
+        // Clear all preferences
+        mySharedPreferences.edit().clear().commit();
 
+        // Delete profile image
+        String filename = "profileImage";
+        File root = getFilesDir();
+        File profileImage = new File(root+"/images/"+filename);
+        profileImage.delete();
+
+        Toast.makeText(this, R.string.profileDeleted, Toast.LENGTH_SHORT).show();
+
+        finish();
+    }
 
 }

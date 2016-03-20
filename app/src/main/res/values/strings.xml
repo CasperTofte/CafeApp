@@ -10,5 +10,9 @@
 
     <string name="btn_profileSave">Save</string>
     <string name="btn_profileCancel">Cancel</string>
+    <string name="btn_profileDelete">Delete</string>
     <string name="btn_takePicture">Take picture</string>
+    <string name="profileSaved">Your profile was saved</string>
+    <string name="profileImageExists">Previous image was overwritten</string>
+    <string name="profileDeleted">Your profile was successfully deleted</string>
 </resources>
