@@ -10,13 +10,11 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-
-
-
 /**
  * Created by Casper Tofte on 08-03-2016.
  */
 public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
+    // ArrapAdapter takes data from an array
 
     // ViewHolder caching - caches findViewById() so the adapter doesn't have to call each view for each row
     // View lookup cache
@@ -41,17 +39,14 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
 
         /*
 		 * Recall that the variable position is sent in as an argument to this method.
-		 * The variable simply refers to the position of the current object in the list. (The ArrayAdapter
+		 * The variable simply refers to the position of the current object in the list.
+		 * (The ArrayAdapter
 		 * iterates through the list we sent it)
 		 *
 		 * Therefore, i refers to the current Item object.
 		 */
         // Get the data item for this position
         Drinks_method drinks = objects.get(position);
-
-
-        // assign the view we are converting to a local variable
-        //View v = convertView;
 
         // Check if the view is not defined. If not defined, we have to inflate (render/create) the view.
         //If it is not null then we have a recycled View and can just change its values, otherwise we need to create a new row View
@@ -61,6 +56,7 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         viewHolder = new ViewHolder();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.list_drinks, parent, false);
+        // Lookup view for data population
         viewHolder.drinkName = (TextView) convertView.findViewById(R.id.drinkName);
         viewHolder.drinkPrice = (TextView) convertView.findViewById(R.id.drinkPrice);
         viewHolder.drinkImage = (ImageView) convertView.findViewById(R.id.drinkImage);
@@ -69,22 +65,22 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         viewHolder = (ViewHolder) convertView.getTag();
     }
 
-
-// before viewholder
-//        if (convertView == null) {
-//            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            convertView= inflater.inflate(R.layout.list_drinks, null);
-//        }
+/*  // Bbefore introducing the viewholder cache
+/*        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView= inflater.inflate(R.layout.list_drinks, null);
+        }
 
         // Lookup view for data population
-//        TextView drinkName = (TextView) convertView.findViewById(R.id.drinkName);
-//        TextView drinkPrice = (TextView) convertView.findViewById(R.id.drinkPrice);
-//        ImageView drinkImage = (ImageView) convertView.findViewById(R.id.drinkImage);
+        TextView drinkName = (TextView) convertView.findViewById(R.id.drinkName);
+        TextView drinkPrice = (TextView) convertView.findViewById(R.id.drinkPrice);
+        ImageView drinkImage = (ImageView) convertView.findViewById(R.id.drinkImage);
 
         // Populate the data into the template view using the data object
-//        drinkName.setText(drinks.getName());
-//        drinkPrice.setText(drinks.getPrice());
-//        drinkImage.setImageResource(drinks.getImage());
+        drinkName.setText(drinks.getName());
+        drinkPrice.setText(drinks.getPrice());
+        drinkImage.setImageResource(drinks.getImage());
+*/
 
         // Populate the data into the template view using the data object
         viewHolder.drinkName.setText(drinks.getName());

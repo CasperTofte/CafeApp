@@ -1,5 +1,6 @@
 package com.example.caspertofte.toftebar;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
