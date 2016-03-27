@@ -45,4 +45,10 @@ public class Main_activity extends AppCompatActivity {
         Intent intent = new Intent(this, Profile_activity.class);
         startActivity(intent);
     }
+
+    public void eventActivity(View v)
+    {
+        Intent intent = new Intent(this, Event_activity.class);
+        startActivity(intent);
+    }
 }

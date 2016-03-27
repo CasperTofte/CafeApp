@@ -107,9 +107,7 @@
                 android:text="@string/btn_profileDelete"
                 android:id="@+id/btn_profileDelete"
                 android:onClick="profileDelete"
-
-
-                 />
+                />
 
         </LinearLayout>
 

@@ -17,19 +17,19 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = '1';
 
     // Drink table names
-    public final String DRINK_TABLE_NAME = "Drinks";
+    public static final String DRINK_TABLE_NAME = "Drinks";
     public static final String DRINK_ID = "_id";
-    public final String DRINK_NAME = "Name";
-    public final String DRINK_IMAGE = "Image";
-    public final String DRINK_PRICE = "Price";
+    public static final String DRINK_NAME = "Name";
+    public static final String DRINK_IMAGE = "Image";
+    public static final String DRINK_PRICE = "Price";
 
-    // Event table names
-    public final String EVENT_TABLE_NAME = "Events";
+    // Event_activity table names
+    public static final String EVENT_TABLE_NAME = "Events";
     public static final String EVENT_ID = "_id";
-    public final String EVENT_DATE = "Date";
-    public final String EVENT_TIME = "Time";
-    public final String EVENT_PERSON = "Person";
-    public final String EVENT_DRINK = "Drink";
+    public static final String EVENT_DATE = "Date";
+    public static final String EVENT_TIME = "Time";
+    public static final String EVENT_PERSON = "Person";
+    public static final String EVENT_DRINK = "Drink";
 
     // Constructor of the DbHelper
     public DbHelper(Context context) {
@@ -52,12 +52,14 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(queryEvents);
         Log.d("Database", "Events table is created");
 
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        // TODO: Both tables gets dropped
+        // TODO: Table data should be migrated to newer version
         if (oldVersion < newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + DRINK_TABLE_NAME);
             onCreate(db);
@@ -69,8 +71,3 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 }
-
-// TODO: – Modify your existing code using SimpleCursorAdapters
-// TODO: – Modify the Drinks Listview to be populated with data from the database.
-// TODO: – Create an activity called Event with 4 Views: date, time, select what you will drink,  save all this information to the Events Table
-// TODO: - Optional: In order to select drinks for the Event Activity access your database

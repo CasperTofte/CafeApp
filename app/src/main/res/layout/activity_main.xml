@@ -25,6 +25,7 @@
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:textSize="25dp" />
+
 <LinearLayout
     android:id="@+id/button_groups"
     android:layout_width="wrap_content"
@@ -32,53 +33,67 @@
     android:orientation="vertical"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true">
-<LinearLayout
-    android:id="@+id/button_group1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <Button
-        android:id="@+id/btn_about"
-        android:text="@string/btn_about"
-        android:layout_alignParentLeft="true"
-        style="@style/btn_main"
-        android:onClick="aboutActivity"
-        />
-    <Button
-        android:id="@+id/button_contact"
-        android:text="@string/btn_contact"
-        android:layout_alignParentRight="true"
-        style="@style/btn_main"
-        android:onClick="contactActivity"
-        />
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_group1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_about"
+            android:text="@string/btn_about"
+            android:layout_alignParentLeft="true"
+            style="@style/btn_main"
+            android:onClick="aboutActivity" />
+        <Button
+            android:id="@+id/button_contact"
+            android:text="@string/btn_contact"
+            android:layout_alignParentRight="true"
+            style="@style/btn_main"
+            android:onClick="contactActivity" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/button_group2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/button_drinks"
-        android:text="@string/btn_drinks"
-        android:layout_alignParentRight="true"
-        android:onClick="drinksActivity"
-        style="@style/btn_main"/>
-    <Button
+
+        <Button
         android:id="@+id/btn_map"
         android:text="@string/btn_map"
         android:layout_alignParentLeft="true"
         style="@style/btn_main"
-        android:onClick="mapActivity"
-        />
+        android:onClick="mapActivity" />
+        <Button
+            android:id="@+id/button_drinks"
+            android:text="@string/btn_drinks"
+            android:layout_alignParentRight="true"
+            android:onClick="drinksActivity"
+            style="@style/btn_main"/>
+
     </LinearLayout>
-        />
-    <Button
-        android:id="@+id/btn_profile"
-        android:text="@string/btn_profile"
-        android:layout_alignParentRight="true"
-        style="@style/btn_main"
-        android:onClick="profileActivity"
-        />
+
+    <LinearLayout
+        android:id="@+id/button_group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_event"
+            android:text="@string/btn_event"
+            android:layout_alignParentLeft="true"
+            style="@style/btn_main"
+            android:onClick="eventActivity"
+            />
+        <Button
+            android:id="@+id/btn_profile"
+            android:text="@string/btn_profile"
+            android:layout_alignParentRight="true"
+            style="@style/btn_main"
+            android:onClick="profileActivity" />
+    </LinearLayout>
 
 </LinearLayout>
 

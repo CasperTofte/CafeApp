@@ -65,7 +65,7 @@ public class CustomAdapter_Drinklist extends ArrayAdapter<Drinks_method> {
         viewHolder = (ViewHolder) convertView.getTag();
     }
 
-/*  // Bbefore introducing the viewholder cache
+/*  // Before introducing the viewholder cache
 /*        if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView= inflater.inflate(R.layout.list_drinks, null);

@@ -1,23 +1,32 @@
 package com.example.caspertofte.toftebar;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Drinks_activity extends AppCompatActivity {
-    private static boolean hasPopulatedDrinks = false;
+    private static int hasPopulatedDrinks = 0;
+    TextView drinkName;
+    TextView drinkPrice;
+    ImageView drinkImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drinks);
+
 
 /*  //1.0 Using a simple ArrayAdapter
         String[] drinksList = {"Cola", "Orange", "Lemon Lime", "Ginger Ale", "Tonic", "Lemon Lime Sugarfree", "Cola Sugarfree", "Orange Sugarfree"};
@@ -39,18 +48,20 @@ public class Drinks_activity extends AppCompatActivity {
         ListOfDrinks.setAdapter(DrinksAdaptor);
 */
 
-    // 2.0 Using a Custom ArrayAdapter
-        populateDrinksList();
+/*     2.0 Using a Custom ArrayAdapter
+        populateDrinksListDb();
         // Add item to adapter
-        //Drinks_method newDrink = new Drinks_method("Cola", "45.00", R.drawable.classics_cola);
-        //adapter.add(newDrink);
+        Drinks_method newDrink = new Drinks_method("Cola", "45.00", R.drawable.classics_cola);
+        adapter.add(newDrink);
+*/
 
     // 3.0 Using a Custom CurserAdapter with a database
-        // Populate drinks table
+        // Insert drinks into table
+        //TODO: Data should only be inserted once
         DbHelper myhelper = new DbHelper(this);
         SQLiteDatabase db = myhelper.getWritableDatabase();
 
-        if (!hasPopulatedDrinks) {
+        if (hasPopulatedDrinks == 0) {
             insertDrinksDB (db, "Cola", 45.00, R.drawable.classics_cola);
             insertDrinksDB (db, "Orange", 36.25, R.drawable.classics_orange);
             insertDrinksDB (db, "Lemon Lime", 30.75, R.drawable.classics_lemon_lime);
@@ -60,14 +71,16 @@ public class Drinks_activity extends AppCompatActivity {
             insertDrinksDB (db, "Cola Sugarfree", 17.50, R.drawable.classics_sugar_free_cola);
             insertDrinksDB (db, "Orange Sugarfree", 19.50, R.drawable.classics_sugar_free_orange);
 
-            hasPopulatedDrinks = true;
-            Log.d("Database", "Drinks are populated into table");
+            hasPopulatedDrinks++;
+            Log.d("Database", "Drinks are inserted into table");
         }
+        //insertDrinksDB (db, "Casper laver databasser", 1337, R.drawable.classics_sugar_free_orange);
 
-
+        populateDrinksListDb();
     }
 
-        public void populateDrinksList() {
+
+/*      public void populateDrinksList() {
         // Construct the data source
         ArrayList<Drinks_method> arrayOfDrinks = Drinks_method.getDrinks();
         // Create the adapter to convert the array to views
@@ -76,16 +89,24 @@ public class Drinks_activity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.myCustomDrinkList);
         listView.setAdapter(adapter);
         }
+*/
 
-       /* public void populateDrinksDB() {
-        // Construct the data source
-        ArrayList<Drinks_method> arrayOfDrinks = Drinks_method.getDrinks();
-        // Create the adapter to convert the array to views
-        CustomCursorAdapter_Drinklist curseradapter = new CustomCursorAdapter_Drinklist(this, arrayOfDrinks);
-        // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.myCustomDrinkList);
-        listView.setAdapter(curseradapter);
-    }*/
+        public void populateDrinksListDb() {
+            DbHelper myhelper = new DbHelper(this);
+            SQLiteDatabase db = myhelper.getWritableDatabase();
+
+        // Retrieve all information from the database table
+            Cursor drinkCursor = db.rawQuery("Select * FROM " + DbHelper.DRINK_TABLE_NAME, null);
+            // Store the desired colum values
+            String[] PresentedData = new String[] {DbHelper.DRINK_NAME, DbHelper.DRINK_PRICE, DbHelper.DRINK_IMAGE};
+            // Store the views to be used for the ListView
+            int[] PresentedViews = new int[] {R.id.drinkName, R.id.drinkPrice, R.id.drinkImage};
+            // Create the adapter to convert the array to views
+            SimpleCursorAdapter drinkCursorAdapter = new SimpleCursorAdapter(this, R.layout.list_drinks, drinkCursor, PresentedData, PresentedViews,0);
+            // Attach the adapter to a ListView
+            ListView drinkListview = (ListView) findViewById(R.id.myCustomDrinkList);
+            drinkListview.setAdapter(drinkCursorAdapter);
+    }
 
         public void insertDrinksDB (SQLiteDatabase db,  String name, double price, int imageRessource) {
 
