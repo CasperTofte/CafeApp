@@ -9,4 +9,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.caspertofte.toftebar.Map_activity">
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/fragment_map"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/txt_location"
+        android:layout_below="@+id/fragment_map"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/txt_address"
+        android:layout_below="@+id/txt_location"
+        />
+
 </RelativeLayout>
