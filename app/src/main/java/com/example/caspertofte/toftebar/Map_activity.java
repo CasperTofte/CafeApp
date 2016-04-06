@@ -72,17 +72,18 @@ public class Map_activity extends AppCompatActivity implements
     }
 
     public void onMapReady(GoogleMap googleMap) {
-
-        // Zoom in on the location
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(57.023682, 9.977708), 15);
-        googleMap.moveCamera(update);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
         // Retrieve bar address
         forwardGeocode();
 
+        // Zoom in on the location
+        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(toftebarLat, toftebarLong), 15);
+        googleMap.moveCamera(update);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
         // Add a marker to TofteBar
         addMarker(toftebarLat, toftebarLong, "Toftebar");
+
+
 
        // googleMap.addMarker(new MarkerOptions()
        //         .position(new LatLng(toftebarLat, toftebarLong))

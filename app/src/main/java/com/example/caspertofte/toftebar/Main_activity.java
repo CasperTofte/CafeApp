@@ -22,9 +22,9 @@ public class Main_activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void contactActivity(View v)
+    public void dessertActivity(View v)
     {
-        Intent intent = new Intent(this, Contact_activity.class);
+        Intent intent = new Intent(this, Dessert_activity.class);
         startActivity(intent);
     }
 

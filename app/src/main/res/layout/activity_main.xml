@@ -46,11 +46,11 @@
             style="@style/btn_main"
             android:onClick="aboutActivity" />
         <Button
-            android:id="@+id/button_contact"
-            android:text="@string/btn_contact"
+            android:id="@+id/button_dessert"
+            android:text="@string/btn_dessert"
             android:layout_alignParentRight="true"
             style="@style/btn_main"
-            android:onClick="contactActivity" />
+            android:onClick="dessertActivity" />
 
     </LinearLayout>
 

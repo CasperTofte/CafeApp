@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <fragment
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:name="com.example.caspertofte.toftebar.Frag_dessertList"
+        android:id="@+id/fragment"
+        tools:layout="@layout/fragment_dessertlist" />
+
+    <fragment
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:name="com.example.caspertofte.toftebar.Frag_dessertDescription"
+        android:id="@+id/fragment2"
+        android:layout_gravity="right"
+        tools:layout="@layout/fragment_dessertdescription" />
+
+
+</LinearLayout>
