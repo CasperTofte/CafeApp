@@ -1,8 +1,13 @@
 package com.example.caspertofte.toftebar;
 
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +31,8 @@ public class Event_activity extends AppCompatActivity {
     EditText et_eventPerson;
 
     SQLiteDatabase db;
+
+    static final int PICK_CONTACT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +98,28 @@ public class Event_activity extends AppCompatActivity {
             }
         }
         return drinks;
+    }
+
+    //
+    public void invite_friend (View view) {
+        Intent contactIntent = new Intent (Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(contactIntent, PICK_CONTACT);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_CONTACT && resultCode == Activity.RESULT_OK) {
+
+            Uri contactData = data.getData();
+            ContentResolver resolver = getContentResolver();
+            Cursor cur = resolver.query(contactData, null, null, null, null);
+            cur.moveToFirst();
+
+            int nameColumn = cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+            String contactName = cur.getString(nameColumn);
+
+            TextView contact = (TextView) findViewById(R.id.eventPerson);
+            contact.setText(contactName);
+        }
     }
 
 }

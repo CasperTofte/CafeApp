@@ -25,16 +25,19 @@ public class Frag_dessertList extends Fragment implements AdapterView.OnItemClic
         return inflater.inflate(R.layout.fragment_dessertlist, container, false);
     }
 
+    // Returned when "onCreate" is finished executing in the Dessert_activity
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+        //Reference to the ListView
         list = (ListView) getActivity().findViewById(R.id.fragment_dessertList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,desserts);
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);
     }
 
+    // When the user clicks on an item in the ListView, this method is called
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 

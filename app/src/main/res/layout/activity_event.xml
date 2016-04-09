@@ -76,6 +76,13 @@
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:text="@string/event_person"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Invite a friend"
+                android:layout_marginBottom="20dp"
+                android:onClick="invite_friend" />
+
             <EditText
                 android:id="@+id/eventPerson"
                 android:layout_width="200dp"
