@@ -22,6 +22,12 @@ public class Main_activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void songActivity(View v)
+    {
+        Intent intent = new Intent(this, Song_activity.class);
+        startActivity(intent);
+    }
+
     public void dessertActivity(View v)
     {
         Intent intent = new Intent(this, Dessert_activity.class);

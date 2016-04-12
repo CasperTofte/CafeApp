@@ -40,11 +40,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btn_about"
-            android:text="@string/btn_about"
+            android:id="@+id/btn_songs"
+            android:text="@string/btn_song"
             android:layout_alignParentLeft="true"
             style="@style/btn_main"
-            android:onClick="aboutActivity" />
+            android:onClick="songActivity" />
         <Button
             android:id="@+id/button_dessert"
             android:text="@string/btn_dessert"

@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    // Sensors
+    <uses-feature android:name="android.hardware.sensor.accelerometer" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -42,7 +45,8 @@
         <activity android:name=".About_activity" />
         <activity android:name=".Profile_activity" />
         <activity android:name=".Event_activity" />
-        <activity android:name=".Dessert_activity"></activity>
+        <activity android:name=".Dessert_activity" />
+        <activity android:name=".Song_activity"></activity>
     </application>
 
 </manifest>
