@@ -85,9 +85,9 @@ public class Map_activity extends AppCompatActivity implements
 
 
 
-       // googleMap.addMarker(new MarkerOptions()
-       //         .position(new LatLng(toftebarLat, toftebarLong))
-       //         .title("Toftebar"));
+        // googleMap.addMarker(new MarkerOptions()
+        //         .position(new LatLng(toftebarLat, toftebarLong))
+        //         .title("Toftebar"));
 
 
 
@@ -216,6 +216,5 @@ public class Map_activity extends AppCompatActivity implements
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(latitude, lontitude))
                 .title(title));
-
     }
 }

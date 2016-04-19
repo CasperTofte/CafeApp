@@ -5,7 +5,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +13,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+public class SongService_activity extends AppCompatActivity implements SensorEventListener {
 
-public class Song_activity extends AppCompatActivity implements SensorEventListener {
+// TODO Play music from a service. Bind the service to the activity to react to gestures.
 
     // mediaplayer
     MediaPlayer mp;
@@ -47,8 +46,7 @@ public class Song_activity extends AppCompatActivity implements SensorEventListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_songs);
-
+        setContentView(R.layout.activity_song_service_activity);
         songList = new int[] {R.raw.arcofthesun1, R.raw.coalminingblues2, R.raw.yellowmoon3};
         numberOfSongs = songList.length;
         Log.d("Number of songs",String.valueOf(numberOfSongs));
@@ -126,7 +124,7 @@ public class Song_activity extends AppCompatActivity implements SensorEventListe
                 Log.d("sensor", "shake detected w/ speed: " + speed);
                 Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
                 nextSong();
-                }
+            }
 
             last_x = x;
             last_y = y;
@@ -182,7 +180,7 @@ public class Song_activity extends AppCompatActivity implements SensorEventListe
     }
 
     public void nextSong() {
-            songNumber++;
+        songNumber++;
         if (songNumber<3){
             playSong(songNumber);
         } else{
@@ -222,4 +220,5 @@ public class Song_activity extends AppCompatActivity implements SensorEventListe
     public void playPause_btn(View view){
         playPause();
     }
+
 }

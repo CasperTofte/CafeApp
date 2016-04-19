@@ -46,6 +46,12 @@ public class Main_activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void mapAsyncActivity(View v)
+    {
+        Intent intent = new Intent(this, MapAsync_activity.class);
+        startActivity(intent);
+    }
+
     public void profileActivity(View v)
     {
         Intent intent = new Intent(this, Profile_activity.class);
