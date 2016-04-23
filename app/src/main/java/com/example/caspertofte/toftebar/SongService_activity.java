@@ -1,10 +1,15 @@
 package com.example.caspertofte.toftebar;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +24,7 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
 
     // mediaplayer
     MediaPlayer mp;
-    int songList[];
-    int numberOfSongs;
-    int songNumber = 0;
+
     TextView tv_songTitle;
     TextView tv_playPause;
 
@@ -42,18 +45,18 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
     float last_y;
     float last_z;
 
+    // Service
+    songService s;
+    Boolean isBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_service_activity);
-        songList = new int[] {R.raw.arcofthesun1, R.raw.coalminingblues2, R.raw.yellowmoon3};
-        numberOfSongs = songList.length;
-        Log.d("Number of songs",String.valueOf(numberOfSongs));
+
+
         tv_songTitle = (TextView) findViewById(R.id.songTitle);
         tv_playPause = (TextView) findViewById(R.id.btn_playPause);
-        mp = MediaPlayer.create(this, songList[songNumber]);
-
 
         // reference to the axes views
         /*xAxis = (TextView) findViewById(R.id.xaxis);
@@ -68,20 +71,17 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
         // If rotated to landscape, play song. If put on table, pause song.
         myOrientationEventListener = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL){
             @Override
-            public void onOrientationChanged(int arg0) {
+            public void onOrientationChanged(int arg0) {        // TODO: The service should react to gestures / changes in orientation
                 // get the orientation value between 0 and 359
                 orientationValue = arg0;
                 orientationText = "Orientation: " + String.valueOf(arg0);
                 //Log.d("Orientation", orientationText);
 
                 if ((orientationValue> 80 && orientationValue<100) || (orientationValue>260 && orientationValue<280)){
-                    if(mp!=null && !mp.isPlaying()){playSong(songNumber);}
+                    if(s.getMPstate() && !s.getMPplay() ){s.playSong(s.getSongNumber());}        // TODO: Retrieve mp status and mp.isPlaying + change play/pause if playing
                 }
-                /*if((orientationValue < 0) || (orientationValue>0 && orientationValue<79)){
-                    if(mp!=null && mp.isPlaying()){ playPause(); }
-                }*/
                 if(orientationValue < 0){
-                    if(mp!=null && mp.isPlaying()){ playPause(); }
+                    if(s.getMPstate() && !s.getMPplay()){ s.playPause(); displaySongName(); }
                 }
             }
         };
@@ -96,17 +96,24 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
     protected void onPause(){
         super.onPause();
 
-        stopMusic();
+        s.stopMusic();
         smanager.unregisterListener(this);
+
+        // service unbind
+        unbindService(songConnection);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         smanager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+        // service binding
+        Intent intent = new Intent(this,songService.class);
+        bindService(intent, songConnection, Context.BIND_AUTO_CREATE);
     }
 
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent event) {            //TODO: Move shake to service
         /*xAxis.setText(String.format("%f", event.values[0]));
         yAxis.setText(String.format("%f", event.values[1]));
         zAxis.setText(String.format("%f", event.values[2]));*/
@@ -123,9 +130,9 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
             if (speed > SHAKE_THRESHOLD) {
                 Log.d("sensor", "shake detected w/ speed: " + speed);
                 Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
-                nextSong();
+                s.nextSong();
+                displaySongName();
             }
-
             last_x = x;
             last_y = y;
             last_z = z;
@@ -138,7 +145,7 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
         super.onDestroy();
         myOrientationEventListener.disable();
 
-        stopMusic();
+        s.stopMusic();
     }
 
     @Override
@@ -146,79 +153,76 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
     }
 
 
-    // Clear the mediaplayer
-    public void stopMusic(){
-        if (mp!=null)
-        {
-            mp.stop();
-            mp.release();
-            mp = null;
-        }
-    }
 
-    public void playSong(int index){
-        stopMusic();
-
-        switch (index){
-            case 0:
-                tv_songTitle.setText("Arc of the sun");
-                Toast.makeText(this, "Song 0", Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                tv_songTitle.setText("Coalmining Blues");
-                Toast.makeText(this, "Song 1", Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                tv_songTitle.setText("Yellow moon");
-                Toast.makeText(this, "Song 2", Toast.LENGTH_SHORT).show();
-        }
-
-        tv_playPause.setText("Pause");
-        mp = MediaPlayer.create(this,songList[index]);
-        mp.start();
-        //playPause();
-    }
-
-    public void nextSong() {
-        songNumber++;
-        if (songNumber<3){
-            playSong(songNumber);
-        } else{
-            songNumber = 0;
-            playSong(songNumber);
-        }
-    }
-
-    public void previousSong() {
-        songNumber--;
-        if(songNumber>-1){
-            playSong(songNumber);
-        } else{
-            songNumber=numberOfSongs-1;
-            playSong(songNumber);
-        }
-    }
-
-    public void playPause(){
-        if(mp!=null){
-            if (!mp.isPlaying()){
-                playSong(songNumber);
-                tv_playPause.setText("Pause");
-            } else{
-                mp.pause();
-                tv_playPause.setText("Play");
-            }
-        }
-    }
 
     public void nextSong_btn(View view){
-        nextSong();
+        s.nextSong();
+        displaySongName();
+        displayPlayPause();
     }
     public void previousSong_btn(View view){
-        previousSong();
+        s.previousSong();
+        displaySongName();
+        displayPlayPause();
     }
     public void playPause_btn(View view){
-        playPause();
+        s.playPause();
+        displaySongName();
+        displayPlayPause();
     }
+
+    public void displaySongName(){
+        String songName = s.getSongName();
+        tv_songTitle.setText(songName);
+    }
+
+    public void displayPlayPause() {
+        if (s.getMPplay()) {
+            tv_playPause.setText("Pause");
+        }
+        else{
+            tv_playPause.setText("Play");
+        }
+    }
+
+
+
+    // Service
+
+    @Override
+    public void onStart(){
+        // service
+        super.onStart();
+        songServiceExplicitStart();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        songServiceExplicitStop();
+    }
+
+    private void songServiceExplicitStart(){
+        Intent intent = new Intent(SongService_activity.this, songService.class);
+        startService(intent);
+    }
+    private void songServiceExplicitStop(){
+        stopService(new Intent(SongService_activity.this, songService.class));
+    }
+
+    private ServiceConnection songConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            songService.LocalBinder b = (songService.LocalBinder) service;
+            s = b.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            s = null;
+            isBound = false;
+        }
+    };
 
 }

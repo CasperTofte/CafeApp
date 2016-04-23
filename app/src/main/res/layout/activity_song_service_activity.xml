@@ -9,4 +9,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.caspertofte.toftebar.SongService_activity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Now playing"
+            android:gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/songTitle"
+            android:paddingTop="20dp"
+            android:text="No song is being played"
+            android:gravity="center_horizontal"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:onClick="previousSong_btn"
+                android:text="Previous"
+                />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:id="@+id/btn_playPause"
+                android:onClick="playPause_btn"
+                android:text="Play"
+                />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:onClick="nextSong_btn"
+                android:text="Next"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

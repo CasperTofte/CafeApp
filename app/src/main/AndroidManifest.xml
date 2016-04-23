@@ -48,6 +48,12 @@
         <activity android:name=".Song_activity" />
         <activity android:name=".MapAsync_activity" />
         <activity android:name=".SongService_activity"></activity>
+        <service 
+            android:name=".songService"
+            android:exported="false">
+        </service>
+
+
     </application>
 
 </manifest>
