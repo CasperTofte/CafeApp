@@ -22,9 +22,6 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
 
 // TODO Play music from a service. Bind the service to the activity to react to gestures.
 
-    // mediaplayer
-    MediaPlayer mp;
-
     TextView tv_songTitle;
     TextView tv_playPause;
 
@@ -80,8 +77,8 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
                 if ((orientationValue> 80 && orientationValue<100) || (orientationValue>260 && orientationValue<280)){
                     if(s.getMPstate() && !s.getMPplay() ){s.playSong(s.getSongNumber());}        // TODO: Retrieve mp status and mp.isPlaying + change play/pause if playing
                 }
-                if(orientationValue < 0){
-                    if(s.getMPstate() && !s.getMPplay()){ s.playPause(); displaySongName(); }
+                if(orientationValue < 0){   // The phone lies on the table
+                    if(s.getMPstate() && !s.getMPplay()){s.playPause(); displaySongName(); }
                 }
             }
         };
@@ -96,7 +93,7 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
     protected void onPause(){
         super.onPause();
 
-        s.stopMusic();
+        //s.stopMusic();
         smanager.unregisterListener(this);
 
         // service unbind
@@ -111,6 +108,14 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
         // service binding
         Intent intent = new Intent(this,songService.class);
         bindService(intent, songConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myOrientationEventListener.disable();
+
+        //s.stopMusic();
     }
 
     public void onSensorChanged(SensorEvent event) {            //TODO: Move shake to service
@@ -140,19 +145,11 @@ public class SongService_activity extends AppCompatActivity implements SensorEve
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        myOrientationEventListener.disable();
 
-        s.stopMusic();
-    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
-
-
 
 
     public void nextSong_btn(View view){

@@ -66,7 +66,6 @@ public class songService extends Service {
     public void playSong(int index){
         stopMusic();
 
-        //tv_playPause.setText("Pause");
         mp = MediaPlayer.create(this, songList[index]);
         mp.start();
     }
@@ -139,8 +138,5 @@ public class songService extends Service {
             return false;
         }
     }
-
-
-
 
 }
