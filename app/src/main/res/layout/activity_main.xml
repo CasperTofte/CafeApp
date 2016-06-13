@@ -65,7 +65,7 @@
         android:text="@string/btn_map"
         android:layout_alignParentLeft="true"
         style="@style/btn_main"
-        android:onClick="mapAsyncActivity" />
+        android:onClick="mapActivity" />
         <Button
             android:id="@+id/button_drinks"
             android:text="@string/btn_drinks"

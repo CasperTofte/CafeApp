@@ -18,7 +18,7 @@ public class Frag_dessertList extends Fragment implements AdapterView.OnItemClic
 
     ListView list;
 
-    String[] desserts = {"Toblerone", "Sukker", "Havregryn", "Lotte"};
+    String[] desserts = {"Chocolate Brownies", "Christmas Cookies", "Candy Bars", "Apple Cobbler"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

@@ -74,8 +74,6 @@ public class Drinks_activity extends AppCompatActivity {
             hasPopulatedDrinks++;
             Log.d("Database", "Drinks are inserted into table");
         }
-        //insertDrinksDB (db, "Casper laver databasser", 1337, R.drawable.classics_sugar_free_orange);
-
         populateDrinksListDb();
     }
 

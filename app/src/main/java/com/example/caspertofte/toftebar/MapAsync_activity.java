@@ -50,10 +50,12 @@ public class MapAsync_activity extends AppCompatActivity {
             reverseGeocode(location);
             return locationAddress;
         }
+
         @Override
         protected void onPreExecute() {
-            tv_address = (TextView)findViewById(R.id.txt_asyncAddress);
+            tv_address = (TextView) findViewById(R.id.txt_asyncAddress);
         }
+
         @Override
         protected void onPostExecute(String result) {
             tv_address.setText("Your last position was " + result);
@@ -61,16 +63,15 @@ public class MapAsync_activity extends AppCompatActivity {
 
 
         protected Location getLastLocation() {
-                // Check if permissions are granted
-                if (ActivityCompat.checkSelfPermission(MapAsync_activity.this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(MapAsync_activity.this,
-                                Manifest.permission.ACCESS_COARSE_LOCATION)
-                                != PackageManager.PERMISSION_GRANTED) {
-                    Log.e("Location:", "Missing location permissions");
-                }
-                else {
-                    Log.d("Location", "Permissions granted");
+            // Check if permissions are granted
+            if (ActivityCompat.checkSelfPermission(MapAsync_activity.this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(MapAsync_activity.this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED) {
+                Log.e("Location:", "Missing location permissions");
+            } else {
+                Log.d("Location", "Permissions granted");
                 LocationManager locationManager = (LocationManager)
                         MapAsync_activity.this.getSystemService(MapAsync_activity.this.LOCATION_SERVICE);
 
@@ -107,7 +108,3 @@ public class MapAsync_activity extends AppCompatActivity {
     }
 
 }
-
-
-
-

@@ -16,7 +16,11 @@ import org.w3c.dom.Text;
  */
 public class Frag_dessertDescription extends Fragment {
 
-    String[] description = {"Nutella", "Chocolate", "Strawberry", "Pineapple" };
+    String[] description = {
+            "Custom Catering's own fresh fudge chocolate brownies full of pecans, chocolate and farm fresh butter!",
+            "These festive sugar cookies are decorated in bright reds and greens and make that perfect bite sized treet,  Ho Ho Ho!!",
+            "Candy bars offer quick energy and are the perfect dessert for a picnic lunch.",
+            "Apples, cinnamon, butter and nutmeg make this cobbler stick to ya ribs!!" };
     TextView tv_dessertDescription;
     String activeDescription;
 

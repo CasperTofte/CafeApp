@@ -1,6 +1,7 @@
 package com.example.caspertofte.toftebar;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -216,5 +218,12 @@ public class Map_activity extends AppCompatActivity implements
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(latitude, lontitude))
                 .title(title));
+    }
+
+
+    public void mapAsyncActivity(View v)
+    {
+        Intent intent = new Intent(this, MapAsync_activity.class);
+        startActivity(intent);
     }
 }

@@ -18,15 +18,21 @@
         android:layout_centerHorizontal="true" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:id="@+id/txt_location"
         android:layout_below="@+id/fragment_map"
         />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:id="@+id/txt_address"
         android:layout_below="@+id/txt_location"
         />
+    <Button
+        style="@style/btn_main"
+        android:onClick="mapAsyncActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Last known location - Async"/>
 
 </RelativeLayout>
